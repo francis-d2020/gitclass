@@ -14,14 +14,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
-        if: github.ref == 'refs/heads/main'
+      - name: set up python 3.13.5
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-
-      - name: set up python 3.12
-        if: github.ref == 'refs/heads/dev'
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+          python-version: "3.13.5"
+          
+      - name: Check Python version
+        run: python --version
