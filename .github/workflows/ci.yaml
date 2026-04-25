@@ -35,3 +35,14 @@ jobs:
           push: true
           tags: francd30/dockertests:${{ github.sha }}
 
+      - name: Update Helm values
+        run: |
+            sed -i "s/tag:.*/tag: ${{ github.sha }}/" myapp/values.yaml
+
+      - name: Commit changes
+        run: |
+            git config user.name "github-actions"
+            git config user.email "actions@github.com"
+            git add myapp/values.yaml
+            git commit -m "update image tag"
+            git push
